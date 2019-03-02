@@ -20,10 +20,13 @@ int main(int argc, char** argv) {
     uint8_t *map = (uint8_t *) calloc(128, sizeof(uint8_t));
     // This would still work - allocated memory size is still the same.
     //uint8_t *map2 = (uint8_t *) calloc(sizeof(uint8_t), 128);
+
     //printf("%lu\n", sizeof(uint64_t));
 
     // Try to use bits to access the correct item in the *map
     // if we try to optimize *map for memory -> 128 -> 16 
+    // hint: if we get 'c' = 0b1100011
+    // since 'c' = 99 => 99/16 => x = 6; y = 3
     int len = strlen(string);
     for (int x = 0; x < len; x++) {
         uint8_t c = string[x];
