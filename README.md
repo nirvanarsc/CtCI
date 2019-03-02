@@ -1,0 +1,1 @@
+Use `gcc -Wall -Wextra -pedantic main.c -o main` for extra information.
