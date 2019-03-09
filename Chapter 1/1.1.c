@@ -32,7 +32,7 @@ int main(int argc, char **argv) {
     uint8_t c = string[x];
 
     if (map[c] == 1) {
-      printf("String contains not unique characters, %c, %d\n", c, x);
+      printf("String contains duplicate characters, %c, %d\n", c, x);
       return 0;
     }
 
