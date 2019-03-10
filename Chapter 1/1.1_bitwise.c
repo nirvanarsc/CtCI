@@ -11,19 +11,19 @@ int main(int argc, char **argv) {
   /* Assumes only letters a through z. */
   char *string = argv[1];
 
-  int len = strlen(string);
+  size_t len = strlen(string);
 
   if (len > 26) {
     printf("String contains duplicate characters!\n");
-    return 0;
+    return 1;
   }
-  uint8_t checker = 0;
+  uint32_t checker = 0;
 
   for (uint8_t i = 0; i < len; i++) {
     int val = string[i] - 'a';
     if ((checker & (1 << val)) > 0) {
       printf("String contains duplicate characters! %c\n", string[i]);
-      return 0;
+      return 1;
     }
     checker |= (1 << val);
   }

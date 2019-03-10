@@ -16,7 +16,7 @@ int main(int argc, char** argv) {
   }
 
   char* string = argv[1];
-
+  
   int length = atoi(argv[2]);
   // Same as below https://opensource.apple.com/source/Libc/Libc-186/stdlib.subproj/atoi.c.auto.html
   // int length = strtol(argv[2], NULL, 10);

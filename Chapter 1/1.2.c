@@ -8,6 +8,9 @@ char* sortString(char* string) {
   int i, j;
   int n = strlen(string);
 
+  // implement quick sort or merge sort
+  // try to implement count sort O(K + N)
+  // bubble sort = bad O(N^2)
   for (i = 0; i < n - 1; i++) {
     for (j = i + 1; j < n; j++) {
       if (string[i] > string[j]) {
@@ -28,15 +31,24 @@ int main(int argc, char** argv) {
 
   char* a = argv[1];
   char* b = argv[2];
+  size_t lengthA = strlen(a);
+  size_t lengthB = strlen(b);
+
+  if (lengthA != lengthB) {
+    printf("Strings are not a permutation of each other\n");
+    return 1;
+  }
 
   sortString(a);
   sortString(b);
 
-  for (uint8_t i = 0; i < strlen(a); i++) {
+  for (size_t i = 0; i < lengthA; i++) {
     if (a[i] != b[i]) {
       printf("Strings are not a permutation of each other\n");
-      return 0;
+      return 1;
     }
   }
   printf("Strings are a permutation of each other\n");
+
+  return 0;
 }
