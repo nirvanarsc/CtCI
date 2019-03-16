@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -20,7 +21,10 @@ int main(int argc, char **argv) {
   int flag = 0;
   for (int x = 0; x < 128; x++) {
     if (flag && map[x] % 2 != 0) {
-      printf("%s is NOT a permutation of a palindrome.\nSecond invalid character is %c\n", string, x);
+      printf(
+          "%s is NOT a permutation of a palindrome.\nSecond invalid character "
+          "is %c\n",
+          string, x);
       return 1;
     } else if (map[x] % 2 != 0) {
       flag = 1;
