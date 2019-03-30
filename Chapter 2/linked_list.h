@@ -38,6 +38,12 @@ void addNodes(node head, int *values, int length) {
   }
 }
 
+void addCharNodes(node head, char *values, int length) {
+  for (int i = 0; i < length; i++) {
+    addNode(head, values[i]);
+  }
+}
+
 node deleteNode(node head, int value) {
   node n = head;
 
@@ -84,4 +90,13 @@ void printLinkedList(node head) {
     n = n->next;
   }
   printf("%d\n", n->data);
+}
+
+void printCharLinkedList(node head) {
+  node n = head;
+  while (n->next != NULL) {
+    printf("%c ", n->data);
+    n = n->next;
+  }
+  printf("%c\n", n->data);
 }
