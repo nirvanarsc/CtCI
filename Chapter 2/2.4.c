@@ -5,8 +5,8 @@ void partition(node head, int partition_value) {
   int length = getLength(head);
   while (length-- > 0) {
     if (n->data >= partition_value) {
-      head = deleteNode(head, n->data);
-      head = addNode(head, n->data);
+      deleteNode(head, n->data);
+      addNode(head, n->data);
     }
     n = n->next;
   }
