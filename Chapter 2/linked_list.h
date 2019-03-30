@@ -1,3 +1,4 @@
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -31,9 +32,56 @@ node addNode(node head, int value) {
   return head;
 }
 
-void printLinkedList(node head) {
-  printf("%d\n", head->data);
-  if (head->next != NULL) {
-    printLinkedList(head->next);
+void addNodes(node head, int *values, int length) {
+  for (int i = 0; i < length; i++) {
+    addNode(head, values[i]);
   }
+}
+
+node deleteNode(node head, int value) {
+  node n = head;
+
+  if (n->data == value) {
+    return head->next;
+  }
+
+  while (n->next != NULL) {
+    if (n->next->data == value) {
+      n->next = n->next->next;
+      return head;
+    }
+    n = n->next;
+  }
+  return head;
+}
+
+node deleteDuplicateNode(node head, int value) {
+  node n = head;
+  bool seen = false;
+
+  if (n->data == value) {
+    seen = true;
+  }
+
+  while (n->next != NULL) {
+    if (n->next->data == value) {
+      if (seen) {
+        n->next = n->next->next;
+        return head;
+      } else {
+        seen = true;
+      }
+    }
+    n = n->next;
+  }
+  return head;
+}
+
+void printLinkedList(node head) {
+  node n = head;
+  while (n->next != NULL) {
+    printf("%d ", n->data);
+    n = n->next;
+  }
+  printf("%d\n", n->data);
 }
