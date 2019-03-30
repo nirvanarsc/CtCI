@@ -100,3 +100,13 @@ void printCharLinkedList(node head) {
   }
   printf("%c\n", n->data);
 }
+
+int getLength(node head) {
+  node n = head;
+  int length = 1;
+    while (n->next != NULL) {
+    length++;
+    n = n->next;
+  }
+  return length;
+}
