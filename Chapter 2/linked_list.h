@@ -1,3 +1,4 @@
+#include <math.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -163,4 +164,18 @@ int convertFromReverseList(node head) {
   }
   res += n->data * pow(10, --index);
   return res;
+}
+
+node reverse(node head) {
+  node prev = NULL;
+  node current = head;
+  node next = NULL;
+  while (current != NULL) {
+    next = current->next;
+    current->next = prev;
+    prev = current;
+    current = next;
+  }
+  head = prev;
+  return head;
 }

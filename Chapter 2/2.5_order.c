@@ -1,4 +1,3 @@
-#include <math.h>
 #include "linked_list.h"
 
 node convertToList(int sum) {
