@@ -61,26 +61,27 @@ node deleteNode(node head, int value) {
   return head;
 }
 
-node deleteDuplicateNode(node head, int value) {
-  node n = head;
-  bool seen = false;
-
-  if (n->data == value) {
-    seen = true;
+void deleteMiddleNode(node middle) {
+  if (middle == NULL || middle->next == NULL) {
+    printf("Cannot remove the last element!\n");
+    return;
   }
 
-  while (n->next != NULL) {
-    if (n->next->data == value) {
-      if (seen) {
-        n->next = n->next->next;
-        return head;
-      } else {
-        seen = true;
-      }
-    }
+  node next = middle->next;
+  middle->data = next->data;
+  middle->next = next->next;
+}
+
+void deleteLastNode(node head) {
+  node n = head;
+  if (head == NULL || head->next == NULL) {
+    return;
+  }
+  while (n->next->next != NULL) {
     n = n->next;
   }
-  return head;
+  n->next = NULL;
+  free(n->next);
 }
 
 void printLinkedList(node head) {
@@ -104,7 +105,7 @@ void printCharLinkedList(node head) {
 int getLength(node head) {
   node n = head;
   int length = 1;
-    while (n->next != NULL) {
+  while (n->next != NULL) {
     length++;
     n = n->next;
   }

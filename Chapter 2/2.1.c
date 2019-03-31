@@ -7,14 +7,14 @@ void removeDuplicates(node head) {
   uint8_t *map = (uint8_t *)calloc(128, sizeof(uint8_t));
   while (n->next != NULL) {
     if (map[n->data] == 1) {
-      deleteDuplicateNode(head, n->data);
+      deleteMiddleNode(n);
+    } else {
+      map[n->data] = 1;
+      n = n->next;
     }
-    map[n->data] = 1;
-    n = n->next;
-  }
-
-  if (map[n->data] == 1) {
-    deleteDuplicateNode(head, n->data);
+    if (n->next == NULL && map[n->data] == 1) {
+      deleteLastNode(head);
+    }
   }
 }
 
@@ -22,7 +22,8 @@ int main() {
   // Initialize the list.
   node head = createNode();
   head->data = 0;
-  int values[] = {2, 3, 5, 2, 1, 5, 1, 3, 2};
+  int values[] = {2, 3, 5, 2, 5, 1, 5, 1, 3, 10, 3};
+
   int length = sizeof(values) / sizeof(values[0]);
   addNodes(head, values, length);
 
