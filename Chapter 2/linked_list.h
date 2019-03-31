@@ -44,6 +44,24 @@ void addCharNodes(node head, char *values, int length) {
   }
 }
 
+node fromArray(int *values, int length) {
+  node head = createNode();
+  head->data = values[0];
+  for (int i = 1; i < length; i++) {
+    addNode(head, values[i]);
+  }
+  return head;
+}
+
+node fromReverseArray(int *values, int length) {
+  node head = createNode();
+  head->data = values[length - 1];
+  for (int i = length - 2; i >= 0; i--) {
+    addNode(head, values[i]);
+  }
+  return head;
+}
+
 node deleteNode(node head, int value) {
   node n = head;
 
@@ -110,4 +128,39 @@ int getLength(node head) {
     n = n->next;
   }
   return length;
+}
+
+int *toArray(int number) {
+  int n = log10(number) + 1;
+  int *numberArray = calloc(n, sizeof(int));
+  for (int i = 0; i < n; ++i, number /= 10) {
+    numberArray[i] = number % 10;
+  }
+  return numberArray;
+}
+
+// 6 7 2 => 276
+int convertFromList(node head) {
+  node n = head;
+  int index = 0;
+  int res = 0;
+  while (n->next != NULL) {
+    res += n->data * pow(10, index++);
+    n = n->next;
+  }
+  res += n->data * pow(10, index++);
+  return res;
+}
+
+// 6 7 2 => 672
+int convertFromReverseList(node head) {
+  node n = head;
+  int index = getLength(head);
+  int res = 0;
+  while (n->next != NULL) {
+    res += n->data * pow(10, --index);
+    n = n->next;
+  }
+  res += n->data * pow(10, --index);
+  return res;
 }

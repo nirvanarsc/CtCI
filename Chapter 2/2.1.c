@@ -1,5 +1,4 @@
 #include <stdint.h>
-#include <stdio.h>
 #include "linked_list.h"
 
 void removeDuplicates(node head) {
@@ -23,7 +22,6 @@ int main() {
   node head = createNode();
   head->data = 0;
   int values[] = {2, 3, 5, 2, 5, 1, 5, 1, 3, 10, 3};
-
   int length = sizeof(values) / sizeof(values[0]);
   addNodes(head, values, length);
 
