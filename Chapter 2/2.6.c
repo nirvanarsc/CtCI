@@ -22,13 +22,12 @@ bool isPalindrome(node first, node reverse) {
 
 int main() {
   // Initialize the first list.
-  int values[] = {1, 2, 3, 4, 4, 2, 5, 4, 3, 2, 1};
+  int values[] = {1, 2, 3, 4, 5, 2, 5, 4, 3, 2, 1};
   int length = sizeof(values) / sizeof(values[0]);
   node head1 = fromArray(values, length);
   node head2 = fromArray(values, length);
   node reversed = reverse(head1);
-  if (isPalindrome(head2, reversed)) {
-    printf("Success\n");
-  } else
-    printf("Not a palindrome\n");
+
+  isPalindrome(head2, reversed) ? printf("Success\n")
+                                : printf("Not a palindrome\n");
 }

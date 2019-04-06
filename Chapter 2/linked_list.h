@@ -1,4 +1,5 @@
 #include <math.h>
+#include <stdarg.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -15,6 +16,27 @@ node createNode() {
   temp = (node)malloc(sizeof(struct LinkedList));
   temp->next = NULL;
   return temp;
+}
+
+node createValueNode(int value) {
+  node temp;
+  temp = (node)malloc(sizeof(struct LinkedList));
+  temp->next = NULL;
+  temp->data = value;
+  return temp;
+}
+
+node linkNodes(node head, int count, ...) {
+  node curr = head;
+  va_list ap;
+  va_start(ap, count);
+  for (int j = 0; j < count; j++) {
+    node t = va_arg(ap, node);
+    curr->next = t;
+    curr = t;
+  }
+  va_end(ap);
+  return head;
 }
 
 node addNode(node head, int value) {
@@ -105,11 +127,11 @@ void deleteLastNode(node head) {
 
 void printLinkedList(node head) {
   node n = head;
-  while (n->next != NULL) {
+  while (n != NULL) {
     printf("%d ", n->data);
     n = n->next;
   }
-  printf("%d\n", n->data);
+  printf("\n");
 }
 
 void printCharLinkedList(node head) {

@@ -5,6 +5,7 @@ void partition(node head, int partition_value) {
   int length = getLength(head);
   while (length-- > 0) {
     if (n->data >= partition_value) {
+      // Optimize by using deleteMiddleNote()?
       deleteNode(head, n->data);
       addNode(head, n->data);
     }
