@@ -89,12 +89,15 @@ node deleteNode(node head, int value) {
   node n = head;
 
   if (n->data == value) {
-    return head->next;
+    node next = head->next;
+    free(head);
+    return next;
   }
 
   while (n->next != NULL) {
     if (n->next->data == value) {
       n->next = n->next->next;
+      free(n->next);
       return head;
     }
     n = n->next;
@@ -111,6 +114,7 @@ void deleteMiddleNode(node middle) {
   node next = middle->next;
   middle->data = next->data;
   middle->next = next->next;
+  free(next);
 }
 
 void deleteLastNode(node head) {
@@ -121,8 +125,8 @@ void deleteLastNode(node head) {
   while (n->next->next != NULL) {
     n = n->next;
   }
-  n->next = NULL;
   free(n->next);
+  n->next = NULL;
 }
 
 void printLinkedList(node head) {

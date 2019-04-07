@@ -1,13 +1,14 @@
 #include "linked_list.h"
 
+// TODO FIX deleteNode()
 void partition(node head, int partition_value) {
   node n = head;
   int length = getLength(head);
   while (length-- > 0) {
     if (n->data >= partition_value) {
       // Optimize by using deleteMiddleNote()?
-      deleteNode(head, n->data);
-      addNode(head, n->data);
+      n = deleteNode(head, n->data);
+      addNode(n, n->data);
     }
     n = n->next;
   }
