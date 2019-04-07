@@ -85,26 +85,6 @@ node fromReverseArray(int *values, int length) {
   return head;
 }
 
-node deleteNode(node head, int value) {
-  node n = head;
-
-  if (n->data == value) {
-    node next = head->next;
-    free(head);
-    return next;
-  }
-
-  while (n->next != NULL) {
-    if (n->next->data == value) {
-      n->next = n->next->next;
-      free(n->next);
-      return head;
-    }
-    n = n->next;
-  }
-  return head;
-}
-
 void deleteMiddleNode(node middle) {
   if (middle == NULL || middle->next == NULL) {
     printf("Cannot remove the last element!\n");
