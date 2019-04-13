@@ -24,7 +24,15 @@ bool isEmpty(struct Stack* stack) { return stack->top == -1; }
 bool push(struct Stack* stack, int item) {
   if (isFull(stack)) return false;
   stack->array[++stack->top] = item;
-  printf("%d pushed to stack\n", item);
+  return true;
+}
+
+bool pushAll(struct Stack* stack, int* items, int items_length) {
+  for (int i = 0; i < items_length; i++) {
+    if (!push(stack, items[i])) {
+      return false;
+    }
+  }
   return true;
 }
 
@@ -40,7 +48,7 @@ int peek(struct Stack* stack) {
 
 void printStack(struct Stack* stack) {
   for (int i = 0; i <= stack->top; i++) {
-    printf("%d", stack->array[i]);
+    printf("%d ", stack->array[i]);
   }
   printf("\n");
 }
