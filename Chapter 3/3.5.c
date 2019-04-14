@@ -1,25 +1,29 @@
 #include "stack.h"
 
-int main() {
-  struct Stack* stack = createStack(6);
-  struct Stack* temp = createStack(6);
-  int arr[] = {10, 9, 8, 20, 3, 50};
-  pushAll(stack, arr, 6);
-  if (isEmpty(temp)) {
-    push(temp, pop(stack));
-  }
-  while (!isEmpty(stack)) {
-    if (peek(stack) < peek(temp)) {
-      push(temp, pop(stack));
-    } else {
-      int t = pop(temp);
-      push(temp, pop(stack));
-      push(stack, t);
-    }
-    printStack(temp);
-    printStack(stack);
-  }
+struct Stack* sort(struct Stack* stack, int size) {
+  struct Stack* sorted = createStack(size);
+  push(sorted, pop(stack));
 
-  printStack(temp);
+  while (!isEmpty(stack)) {
+    if (peek(stack) < peek(sorted)) {
+      push(sorted, pop(stack));
+    } else {
+      int t = pop(stack);
+      while (t > peek(sorted) && !isEmpty(sorted)) {
+        push(stack, pop(sorted));
+      }
+      push(sorted, t);
+    }
+  }
+  return sorted;
+}
+
+int main() {
+  int arr[] = {10, 9, -8, 20, 3, 50, 1};
+  int arr_length = sizeof(arr) / sizeof(arr[0]);
+  struct Stack* stack = createStack(arr_length);
+  pushAll(stack, arr, arr_length);
+
   printStack(stack);
+  printStack(sort(stack, arr_length));
 }
