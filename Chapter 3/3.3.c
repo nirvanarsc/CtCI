@@ -5,10 +5,6 @@ int main() {
   int len = sizeof(arr) / sizeof(arr[0]);
   struct SetOfStacks* set_of_stacks = createSetOfStacks(2);
   pushAllToSet(set_of_stacks, arr, len);
+  popAt(set_of_stacks, 1);
   printStackSet(set_of_stacks);
-  printf("%d\n", set_of_stacks->size);
-
-  popFromSet(set_of_stacks);
-  printStackSet(set_of_stacks);
-  printf("%d\n", set_of_stacks->size);
 }

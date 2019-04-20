@@ -66,10 +66,10 @@ int popFromSet(struct SetOfStacks* set_of_stacks) {
     curr = set_of_stacks->stacks[*index];
   }
 
-  int z = pop(curr);
-  printf("POPPING %d FROM STACK %d\n", z, *index);
+  int res = pop(curr);
+  printf("POPPING %d FROM STACK %d\n", res, *index);
   set_of_stacks->size--;
-  return z;
+  return res;
 }
 
 void printStackSet(struct SetOfStacks* set_of_stacks) {
@@ -80,4 +80,26 @@ void printStackSet(struct SetOfStacks* set_of_stacks) {
     printf("PRINTING STACK %d\n", i);
     printStack(set_of_stacks->stacks[i]);
   }
+}
+
+void reorderStacks(struct SetOfStacks* set_of_stacks, int index) {
+  if (index >= set_of_stacks->curr_stack) {
+    return;
+  }
+  struct Stack* curr = set_of_stacks->stacks[index];
+  struct Stack* next_stack = set_of_stacks->stacks[++index];
+  while (!isFull(curr)) {
+    push(curr, pop(next_stack));
+  }
+  reorderStacks(set_of_stacks, index);
+}
+
+int popAt(struct SetOfStacks* set_of_stacks, int index) {
+  if (index > set_of_stacks->curr_stack) {
+    return INT_MIN;
+  }
+  struct Stack* curr = set_of_stacks->stacks[index];
+  int res = pop(curr);
+  reorderStacks(set_of_stacks, index);
+  return res;
 }
