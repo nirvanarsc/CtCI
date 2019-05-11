@@ -2,29 +2,29 @@
 #include <stdlib.h>
 #include "stack.h"
 
-struct MStack {
+typedef struct MStack {
   int top;
   int capacity;
-  struct Stack* mins;
+  Stack* mins;
   int* array;
-};
+} MStack;
 
-struct MStack* createMStack(int capacity) {
-  struct MStack* stack = (struct MStack*)malloc(sizeof(struct MStack));
-  struct Stack* mins = createStack(capacity);
+MStack* createMStack(int capacity) {
+  MStack* stack = malloc(sizeof(MStack));
+  Stack* mins = createStack(capacity);
   push(mins, INT_MAX);
   stack->capacity = capacity;
   stack->top = -1;
   stack->mins = mins;
-  stack->array = (int*)malloc(stack->capacity * sizeof(int));
+  stack->array = malloc(stack->capacity * sizeof(int));
   return stack;
 }
 
-bool isMFull(struct MStack* stack) { return stack->top == stack->capacity - 1; }
+bool isMFull(MStack* stack) { return stack->top == stack->capacity - 1; }
 
-bool isMEmpty(struct MStack* stack) { return stack->top == -1; }
+bool isMEmpty(MStack* stack) { return stack->top == -1; }
 
-bool pushM(struct MStack* stack, int item) {
+bool pushM(MStack* stack, int item) {
   if (isMFull(stack)) return false;
   stack->array[++stack->top] = item;
   if (item <= peek(stack->mins)) {
@@ -33,7 +33,7 @@ bool pushM(struct MStack* stack, int item) {
   return true;
 }
 
-bool pushMAll(struct MStack* stack, int* items, int items_length) {
+bool pushMAll(MStack* stack, int* items, int items_length) {
   for (int i = 0; i < items_length; i++) {
     if (!pushM(stack, items[i])) {
       return false;
@@ -42,7 +42,7 @@ bool pushMAll(struct MStack* stack, int* items, int items_length) {
   return true;
 }
 
-int popM(struct MStack* stack) {
+int popM(MStack* stack) {
   if (isMEmpty(stack)) return INT_MIN;
   int curr = stack->array[stack->top--];
   if (curr == peek(stack->mins)) {
@@ -51,17 +51,17 @@ int popM(struct MStack* stack) {
   return curr;
 }
 
-int peekM(struct MStack* stack) {
+int peekM(MStack* stack) {
   if (isMEmpty(stack)) return INT_MIN;
   return stack->array[stack->top];
 }
 
-int min(struct MStack* stack) {
+int min(MStack* stack) {
   if (isMEmpty(stack)) return INT_MIN;
   return peek(stack->mins);
 }
 
-void printMStack(struct MStack* stack) {
+void printMStack(MStack* stack) {
   for (int i = 0; i <= stack->top; i++) {
     printf("%d ", stack->array[i]);
   }

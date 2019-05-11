@@ -3,31 +3,31 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Stack {
+typedef struct Stack {
   int top;
   int capacity;
   int* array;
-};
+} Stack;
 
-struct Stack* createStack(int capacity) {
-  struct Stack* stack = (struct Stack*)malloc(sizeof(struct Stack));
+Stack* createStack(int capacity) {
+  Stack* stack = malloc(sizeof(Stack));
   stack->capacity = capacity;
   stack->top = -1;
-  stack->array = (int*)malloc(stack->capacity * sizeof(int));
+  stack->array = malloc(stack->capacity * sizeof(int));
   return stack;
 }
 
-bool isFull(struct Stack* stack) { return stack->top == stack->capacity - 1; }
+bool isFull(Stack* stack) { return stack->top == stack->capacity - 1; }
 
-bool isEmpty(struct Stack* stack) { return stack->top == -1; }
+bool isEmpty(Stack* stack) { return stack->top == -1; }
 
-bool push(struct Stack* stack, int item) {
+bool push(Stack* stack, int item) {
   if (isFull(stack)) return false;
   stack->array[++stack->top] = item;
   return true;
 }
 
-bool pushAll(struct Stack* stack, int* items, int items_length) {
+bool pushAll(Stack* stack, int* items, int items_length) {
   for (int i = 0; i < items_length; i++) {
     if (!push(stack, items[i])) {
       return false;
@@ -36,17 +36,17 @@ bool pushAll(struct Stack* stack, int* items, int items_length) {
   return true;
 }
 
-int pop(struct Stack* stack) {
+int pop(Stack* stack) {
   if (isEmpty(stack)) return INT_MIN;
   return stack->array[stack->top--];
 }
 
-int peek(struct Stack* stack) {
+int peek(Stack* stack) {
   if (isEmpty(stack)) return INT_MIN;
   return stack->array[stack->top];
 }
 
-void printStack(struct Stack* stack) {
+void printStack(Stack* stack) {
   if (isEmpty(stack)) {
     printf("Stack is empty.");
   }

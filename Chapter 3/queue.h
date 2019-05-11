@@ -3,14 +3,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Queue {
+typedef struct Queue {
   int front, rear, size;
   int capacity;
   int* array;
-};
+} Queue;
 
-struct Queue* createQueue(int capacity) {
-  struct Queue* queue = (struct Queue*)malloc(sizeof(struct Queue));
+Queue* createQueue(int capacity) {
+  Queue* queue = (Queue*)malloc(sizeof(Queue));
   queue->capacity = capacity;
   queue->front = queue->size = 0;
   queue->rear = capacity - 1;  // This is important, see the enqueue
@@ -18,11 +18,11 @@ struct Queue* createQueue(int capacity) {
   return queue;
 }
 
-bool isFull(struct Queue* queue) { return (queue->size == queue->capacity); }
+bool isFull(Queue* queue) { return (queue->size == queue->capacity); }
 
-bool isEmpty(struct Queue* queue) { return (queue->size == 0); }
+bool isEmpty(Queue* queue) { return (queue->size == 0); }
 
-void add(struct Queue* queue, int item) {
+void add(Queue* queue, int item) {
   if (isFull(queue)) return;
   queue->rear = (queue->rear + 1) % queue->capacity;
   queue->array[queue->rear] = item;
@@ -30,7 +30,7 @@ void add(struct Queue* queue, int item) {
   printf("%d enqueued to queue\n", item);
 }
 
-int dequeue(struct Queue* queue) {
+int dequeue(Queue* queue) {
   if (isEmpty(queue)) return INT_MIN;
   int item = queue->array[queue->front];
   queue->front = (queue->front + 1) % queue->capacity;
@@ -38,17 +38,17 @@ int dequeue(struct Queue* queue) {
   return item;
 }
 
-int peekFront(struct Queue* queue) {
+int peekFront(Queue* queue) {
   if (isEmpty(queue)) return INT_MIN;
   return queue->array[queue->front];
 }
 
-int peekRear(struct Queue* queue) {
+int peekRear(Queue* queue) {
   if (isEmpty(queue)) return INT_MIN;
   return queue->array[queue->rear];
 }
 
-void printQueue(struct Queue* queue) {
+void printQueue(Queue* queue) {
   for (int i = queue->front; i < queue->front + queue->size; i++) {
     printf("%d ", queue->array[i]);
   }
