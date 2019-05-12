@@ -19,9 +19,9 @@ int main() {
   memcpy(secondPart, arr + split_size, split_size * sizeof(int));
   memcpy(thirdPart, arr + 2 * split_size, split_size * sizeof(int));
 
-  struct Stack* stack1 = createStack(split_size);
-  struct Stack* stack2 = createStack(split_size);
-  struct Stack* stack3 = createStack(split_size);
+  Stack* stack1 = createStack(split_size);
+  Stack* stack2 = createStack(split_size);
+  Stack* stack3 = createStack(split_size);
 
   pushAll(stack1, firstPart, split_size);
   pushAll(stack2, secondPart, split_size);

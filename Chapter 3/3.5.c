@@ -1,7 +1,7 @@
 #include "stack.h"
 
-struct Stack* sort(struct Stack* stack, int size) {
-  struct Stack* sorted = createStack(size);
+Stack* sort(Stack* stack, int size) {
+  Stack* sorted = createStack(size);
   push(sorted, pop(stack));
 
   while (!isEmpty(stack)) {
@@ -21,7 +21,7 @@ struct Stack* sort(struct Stack* stack, int size) {
 int main() {
   int arr[] = {10, 9, -8, 20, 3, 50, 1};
   int arr_length = sizeof(arr) / sizeof(arr[0]);
-  struct Stack* stack = createStack(arr_length);
+  Stack* stack = createStack(arr_length);
   pushAll(stack, arr, arr_length);
 
   printStack(stack);
