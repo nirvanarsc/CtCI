@@ -76,24 +76,19 @@ void printStackSet(StackSet* set_of_stacks) {
   }
 }
 
-void reorderStacks(StackSet* set_of_stacks, int index) {
-  if (index >= set_of_stacks->curr_stack) {
-    return;
-  }
-  Stack* curr = set_of_stacks->stacks[index];
-  Stack* next_stack = set_of_stacks->stacks[++index];
-  while (!isFull(curr)) {
-    push(curr, pop(next_stack));
-  }
-  reorderStacks(set_of_stacks, index);
-}
-
 int popAt(StackSet* set_of_stacks, int index) {
   if (index > set_of_stacks->curr_stack) {
     return INT_MIN;
   }
   Stack* curr = set_of_stacks->stacks[index];
   int res = pop(curr);
-  reorderStacks(set_of_stacks, index);
+  if (isEmpty(curr)) {
+    while (index < set_of_stacks->curr_stack) {
+      Stack* c = set_of_stacks->stacks[index];
+      Stack* n = set_of_stacks->stacks[++index];
+      *c = *n;
+    }
+    set_of_stacks->curr_stack--;
+  }
   return res;
 }
