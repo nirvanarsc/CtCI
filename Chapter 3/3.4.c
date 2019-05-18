@@ -7,8 +7,8 @@ int main() {
   add(a, 3);
   add(a, 4);
   printQueue(a);
-  printf("%d\n", dequeue(a));
-  printf("%d\n", dequeue(a));
-  printf("%d\n", dequeue(a));
-  printf("%d\n", dequeue(a));
+  dequeue(a);
+  dequeue(a);
+  dequeue(a);
+  dequeue(a);
 }

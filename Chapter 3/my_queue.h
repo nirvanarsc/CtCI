@@ -39,7 +39,16 @@ void add(MyQueue* queue, int item) {
 
 int dequeue(MyQueue* queue) {
   if (isQueueEmpty(queue)) return INT_MIN;
+  printf("%d dequeued from queue\n", peek(queue->main));
   return pop(queue->main);
 }
 
-void printQueue(MyQueue* queue) { printStack(queue->main); }
+void printQueue(MyQueue* queue) {
+  if (isQueueEmpty(queue)) {
+    printf("Queue is empty.");
+  }
+  for (int i = queue->main->top; i >= 0; i--) {
+    printf("%d ", queue->main->array[i]);
+  }
+  printf("\n");
+}
