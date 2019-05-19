@@ -10,7 +10,7 @@ typedef struct MyQueue {
 } MyQueue;
 
 MyQueue* createQueue(int capacity) {
-  MyQueue* queue = (MyQueue*)malloc(sizeof(MyQueue));
+  MyQueue* queue = malloc(sizeof(MyQueue));
   queue->capacity = capacity;
   queue->main = createStack(capacity);
   queue->temp = createStack(capacity);

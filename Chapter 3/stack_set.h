@@ -84,11 +84,11 @@ int popAt(StackSet* set_of_stacks, int index) {
   int res = pop(curr);
   if (isEmpty(curr)) {
     while (index < set_of_stacks->curr_stack) {
-      Stack* c = set_of_stacks->stacks[index];
-      Stack* n = set_of_stacks->stacks[++index];
-      *c = *n;
+      set_of_stacks->stacks[index] = set_of_stacks->stacks[index + 1];
+      index++;
     }
     set_of_stacks->curr_stack--;
+    set_of_stacks->stacks[index] = curr;
   }
   return res;
 }
