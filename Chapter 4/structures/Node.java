@@ -1,21 +1,14 @@
-import lombok.AllArgsConstructor;
+package structures;
+
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-
-@AllArgsConstructor
-public class Graph {
-    public Node[] nodes;
-}
+import structures.Graph.State;
 
 @Getter
 @Setter
 @RequiredArgsConstructor
-class Node {
-    enum State {
-        Unvisited, Visited, Visiting
-    }
-
+public class Node {
     private final String name;
     private Node[] adjacent;
     private State state;

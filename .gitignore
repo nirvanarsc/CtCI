@@ -1,4 +1,5 @@
 *.dSYM/
+*.iml
 /**/out
 .vscode/ipch/
 .idea
