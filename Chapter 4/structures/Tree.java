@@ -20,6 +20,7 @@ public class Tree {
     private int distance;
     private int value;
     private Tree left, right;
+    private Tree parent;
 
     public Tree(int val) {
         this.value = val;
@@ -86,6 +87,32 @@ public class Tree {
             return false;
         }
         return validateBST(root.left) && validateBST(root.right);
+    }
+
+    public static Tree getSuccessor(Tree node) {
+        if (node == null) return null;
+
+        if (node.right != null) {
+            return leftMostChild(node.right);
+        } else {
+            Tree q = node;
+            Tree x = q.parent;
+            while (x != null && x.left != q) {
+                q = x;
+                x = x.parent;
+            }
+            return x;
+        }
+    }
+
+    private static Tree leftMostChild(Tree n) {
+        if (n == null) {
+            return null;
+        }
+        while (n.left != null) {
+            n = n.left;
+        }
+        return n;
     }
 
     private static int checkHeight(Tree root) {
