@@ -52,14 +52,14 @@ public class Problem1 {
         Node n5 = new Node("n5");
         Node n6 = new Node("n6");
 
-        n1.setAdjacent(new Node[] { n2, n3, n4 });
-        n2.setAdjacent(new Node[] { n1 });
-        n3.setAdjacent(new Node[] { n1 });
-        n4.setAdjacent(new Node[] { n1, n5 });
-        n5.setAdjacent(new Node[] { n4, n6 });
-        n6.setAdjacent(new Node[] { n5 });
+        n1.setAdjacent(new Node[]{n2, n3, n4});
+        n2.setAdjacent(new Node[]{n1});
+        n3.setAdjacent(new Node[]{n1});
+        n4.setAdjacent(new Node[]{n1, n5});
+        n5.setAdjacent(new Node[]{n4, n6});
+        n6.setAdjacent(new Node[]{n5});
 
-        Graph g = new Graph(new Node[] { n1, n2, n3, n4, n5, n6 });
+        Graph g = new Graph(new Node[]{n1, n2, n3, n4, n5, n6});
 
         System.out.println(search(g, n2, n6));
     }
