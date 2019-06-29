@@ -39,11 +39,13 @@ public class Tree {
         }
 
         this.left = new Tree(Arrays.copyOfRange(arr, 0, middleIndex));
+        this.left.parent = this;
         if (middleIndex == arr.length - 1) {
             return;
         }
 
         this.right = new Tree(Arrays.copyOfRange(arr, middleIndex + 1, arr.length));
+        this.right.parent = this;
     }
 
     public static void printTree(Tree tree, int level) {
