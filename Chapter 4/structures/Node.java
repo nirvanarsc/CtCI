@@ -29,4 +29,9 @@ public class Node {
         nodes.add(n);
         adjacent = nodes.toArray(adjacent);
     }
+
+    @Override
+    public String toString() {
+        return name + outDegree + inDegree;
+    }
 }

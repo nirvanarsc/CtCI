@@ -2,6 +2,7 @@ import structures.Node;
 
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class Problem7 {
@@ -15,16 +16,17 @@ public class Problem7 {
                 new String[]{"d", "c"}
         };
 
-        getBuildOrder(projects, dependencies);
+        getBuildOrder(projects, dependencies).forEach(node -> System.out.println(node.getName()));
     }
 
-    private static void getBuildOrder(String[] projects, String[][] dependencies) {
+    private static List<Node> getBuildOrder(String[] projects, String[][] dependencies) {
         Map<String, Node> nodes = new HashMap<>();
         for (String project : projects) {
             nodes.put(project, new Node(project));
         }
         for (String[] dependency : dependencies) {
             nodes.get(dependency[0]).addAdjacent(nodes.get(dependency[1]));
+            nodes.get(dependency[1]).outDegree++;
             nodes.get(dependency[0]).inDegree++;
         }
 
@@ -32,27 +34,24 @@ public class Problem7 {
         LinkedList<Node> processNext = new LinkedList<>();
 
         nodes.forEach((x, y) -> {
-            if(y.inDegree == 0) {
+            if (y.outDegree == 0) {
                 processNext.add(y);
             }
         });
 
-        while(!processNext.isEmpty()) {
+        while (!processNext.isEmpty()) {
             Node node = processNext.pop();
-            if(node.getAdjacent() != null) {
+            if (node.getAdjacent() != null) {
                 for (Node n : node.getAdjacent()) {
-                    n.inDegree--;
-                    if (n.inDegree == 0) {
+                    n.outDegree--;
+                    if (n.outDegree == 0) {
                         processNext.add(n);
-                        order.add(n);
                     }
                 }
-            } else order.add(node);
+            }
+            order.add(node);
         }
 
-        order.forEach(x -> System.out.println(x.getName()));
-
-
-
+        return order;
     }
 }
