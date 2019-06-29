@@ -56,6 +56,15 @@ public class Tree {
         }
     }
 
+    public static List<Tree> toList(Tree tree, List<Tree> list) {
+        if (tree != null) {
+            list.add(tree);
+            toList(tree.left, list);
+            toList(tree.right, list);
+        }
+        return list;
+    }
+
     public static List<LinkedList<Tree>> listDepths(Tree tree) {
         LinkedList<Tree> q = new LinkedList<>();
         Map<Integer, LinkedList<Tree>> map = new HashMap<>();

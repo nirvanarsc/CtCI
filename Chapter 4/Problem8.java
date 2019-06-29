@@ -3,8 +3,6 @@ import structures.Tree;
 import java.util.stream.IntStream;
 
 public class Problem8 {
-
-
     public static void main(String[] args) {
         Tree tree = new Tree(IntStream.range(1, 16).toArray());
 
