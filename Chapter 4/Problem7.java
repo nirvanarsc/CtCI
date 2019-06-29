@@ -52,6 +52,9 @@ public class Problem7 {
             order.add(node);
         }
 
+        if (order.size() != nodes.size()) {
+            throw new RuntimeException("Graph contains a cycle");
+        }
         return order;
     }
 }
