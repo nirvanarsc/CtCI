@@ -1,6 +1,6 @@
 import static java.lang.Long.toBinaryString;
 
-public class C5Problem2 {
+public final class C5Problem2 {
 
     public static void main(String[] args) {
         System.out.println(fractionalToBinary(0.72, 64));
@@ -26,7 +26,7 @@ public class C5Problem2 {
     private static String fractionalToBinary2(double num, int precision) {
         final StringBuilder binary = new StringBuilder();
         while (num > 0 && binary.length() < precision) {
-            double r = num * 2;
+            final double r = num * 2;
             if (r >= 1) {
                 binary.append(1);
                 num = r - 1;

@@ -2,16 +2,16 @@ import org.jetbrains.annotations.Contract;
 
 import static java.lang.Integer.toBinaryString;
 
-class C5Problem1 {
+final class C5Problem1 {
 
     public static void main(String[] args) {
-        int n = (int) Math.pow(2, 10);
-        int m = 19;
+        final int n = (int) Math.pow(2, 10);
+        final int m = 19;
 
         System.out.println(toBinaryString(insertAt(n, m, 2, 6)));
         System.out.println(toBinaryString(insertAt(n, m, 4, 8)));
 
-        int n1 = ~0;
+        final int n1 = ~0;
 
         System.out.println(toBinaryString(updateBits(n1, m, 2, 6)));
         System.out.println(toBinaryString(updateBits(n1, m, 4, 8)));
@@ -29,12 +29,12 @@ class C5Problem1 {
     }
 
     private static int updateBits(int n, int m, int i, int j) {
-        int allOnes = ~0;
-        int left = allOnes << (j + 1);
-        int right = ((1 << i) - 1);
-        int mask = left | right;
-        int n_cleared = n & mask;
-        int m_shifted = m << i;
+        final int allOnes = ~0;
+        final int left = allOnes << (j + 1);
+        final int right = (1 << i) - 1;
+        final int mask = left | right;
+        final int n_cleared = n & mask;
+        final int m_shifted = m << i;
         return n_cleared | m_shifted;
     }
 
