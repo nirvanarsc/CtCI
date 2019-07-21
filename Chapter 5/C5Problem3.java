@@ -18,7 +18,7 @@ public final class C5Problem3 {
         while (a != 0) {
             if ((a & 1) == 1) {
                 currentLength++;
-            } else if ((a & 1) == 0) {
+            } else {
                 previousLength = (a & 2) == 0 ? 0 : currentLength;
                 currentLength = 0;
             }
