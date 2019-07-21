@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,7 +24,7 @@ public class Tree {
     private Tree parent;
 
     public Tree(int val) {
-        this.value = val;
+        value = val;
     }
 
     public Tree(@NotNull int[] arr) {
@@ -31,21 +32,21 @@ public class Tree {
         if (arr.length == 0) {
             return;
         }
-        int middleIndex = arr.length / 2;
-        this.value = arr[middleIndex];
+        final int middleIndex = arr.length / 2;
+        value = arr[middleIndex];
 
         if (middleIndex == 0) {
             return;
         }
 
-        this.left = new Tree(Arrays.copyOfRange(arr, 0, middleIndex));
-        this.left.parent = this;
+        left = new Tree(Arrays.copyOfRange(arr, 0, middleIndex));
+        left.parent = this;
         if (middleIndex == arr.length - 1) {
             return;
         }
 
-        this.right = new Tree(Arrays.copyOfRange(arr, middleIndex + 1, arr.length));
-        this.right.parent = this;
+        right = new Tree(Arrays.copyOfRange(arr, middleIndex + 1, arr.length));
+        right.parent = this;
     }
 
     public static void printTree(Tree tree, int level) {
@@ -66,8 +67,8 @@ public class Tree {
     }
 
     public static List<LinkedList<Tree>> listDepths(Tree tree) {
-        LinkedList<Tree> q = new LinkedList<>();
-        Map<Integer, LinkedList<Tree>> map = new HashMap<>();
+        final LinkedList<Tree> q = new LinkedList<>();
+        final Map<Integer, LinkedList<Tree>> map = new HashMap<>();
 
         tree.distance = 0;
         q.add(tree);
@@ -87,7 +88,7 @@ public class Tree {
         return checkHeight(root) != Integer.MIN_VALUE;
     }
 
-    public static boolean validateBST(Tree root) {
+    public static boolean validateBST(@Nullable Tree root) {
         if (root == null) {
             return true;
         }
@@ -100,8 +101,10 @@ public class Tree {
         return validateBST(root.left) && validateBST(root.right);
     }
 
-    public static Tree getSuccessor(Tree node) {
-        if (node == null) return null;
+    public static @Nullable Tree getSuccessor(Tree node) {
+        if (node == null) {
+            return null;
+        }
 
         if (node.right != null) {
             return leftMostChild(node.right);
@@ -116,7 +119,7 @@ public class Tree {
         }
     }
 
-    private static Tree leftMostChild(Tree n) {
+    private static @Nullable Tree leftMostChild(Tree n) {
         if (n == null) {
             return null;
         }
@@ -127,15 +130,21 @@ public class Tree {
     }
 
     private static int checkHeight(Tree root) {
-        if (root == null) return -1;
+        if (root == null) {
+            return -1;
+        }
 
-        int leftHeight = checkHeight(root.left);
-        if (leftHeight == Integer.MIN_VALUE) return Integer.MIN_VALUE;
+        final int leftHeight = checkHeight(root.left);
+        if (leftHeight == Integer.MIN_VALUE) {
+            return Integer.MIN_VALUE;
+        }
 
-        int rightHeight = checkHeight(root.right);
-        if (rightHeight == Integer.MIN_VALUE) return Integer.MIN_VALUE;
+        final int rightHeight = checkHeight(root.right);
+        if (rightHeight == Integer.MIN_VALUE) {
+            return Integer.MIN_VALUE;
+        }
 
-        int heightDiff = leftHeight - rightHeight;
+        final int heightDiff = leftHeight - rightHeight;
         if (Math.abs(heightDiff) > 1) {
             return Integer.MIN_VALUE;
         } else {

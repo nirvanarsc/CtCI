@@ -2,11 +2,11 @@ import structures.Tree;
 
 import java.util.stream.IntStream;
 
-public class Problem10 {
-    public static void main(String[] args) {
-        Tree t1 = new Tree(IntStream.range(1, 16).toArray());
+public final class Problem10 {
 
-        Tree t2 = new Tree(IntStream.range(9, 12).toArray());
+    public static void main(String[] args) {
+        final Tree t1 = new Tree(IntStream.range(1, 16).toArray());
+        final Tree t2 = new Tree(IntStream.range(9, 12).toArray());
 
         Tree.printTree(t2, 0);
         System.out.println(checkSubTree(t1, t2));
@@ -31,9 +31,9 @@ public class Problem10 {
         }
 
         if (a != null && b != null) {
-            return (a.getValue() == b.getValue()
+            return a.getValue() == b.getValue()
                     && compareTrees(a.getLeft(), b.getLeft())
-                    && compareTrees(a.getRight(), b.getRight()));
+                    && compareTrees(a.getRight(), b.getRight());
         }
         return false;
     }

@@ -5,10 +5,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class Problem7 {
+public final class Problem7 {
+
     public static void main(String[] args) {
-        String[] projects = new String[]{"a", "b", "c", "d", "e", "f"};
-        String[][] dependencies = new String[][]{
+        final String[] projects = {"a", "b", "c", "d", "e", "f"};
+        final String[][] dependencies = {
                 new String[]{"a", "d"},
                 new String[]{"f", "b"},
                 new String[]{"b", "d"},
@@ -20,7 +21,7 @@ public class Problem7 {
     }
 
     private static List<Node> getBuildOrder(String[] projects, String[][] dependencies) {
-        Map<String, Node> nodes = new HashMap<>();
+        final Map<String, Node> nodes = new HashMap<>();
         for (String project : projects) {
             nodes.put(project, new Node(project));
         }
@@ -30,8 +31,8 @@ public class Problem7 {
             nodes.get(dependency[0]).inDegree++;
         }
 
-        LinkedList<Node> order = new LinkedList<>();
-        LinkedList<Node> processNext = new LinkedList<>();
+        final LinkedList<Node> order = new LinkedList<>();
+        final LinkedList<Node> processNext = new LinkedList<>();
 
         nodes.forEach((x, y) -> {
             if (y.outDegree == 0) {
@@ -40,7 +41,7 @@ public class Problem7 {
         });
 
         while (!processNext.isEmpty()) {
-            Node node = processNext.pop();
+            final Node node = processNext.pop();
             if (node.getAdjacent() != null) {
                 for (Node n : node.getAdjacent()) {
                     n.outDegree--;

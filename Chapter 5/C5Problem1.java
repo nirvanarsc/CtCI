@@ -1,5 +1,3 @@
-import org.jetbrains.annotations.Contract;
-
 import static java.lang.Integer.toBinaryString;
 
 final class C5Problem1 {
@@ -38,12 +36,10 @@ final class C5Problem1 {
         return n_cleared | m_shifted;
     }
 
-    @Contract(pure = true)
     private static boolean getBit(int num, int i) {
         return (num & (1 << i)) != 0;
     }
 
-    @Contract(pure = true)
     private static int setBit(int num, int i) {
         return num | (1 << i);
     }

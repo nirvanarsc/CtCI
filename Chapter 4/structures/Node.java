@@ -21,11 +21,11 @@ public class Node {
 
     public void addAdjacent(Node n) {
         if (adjacent == null) {
-            this.adjacent = new Node[]{n};
+            adjacent = new Node[]{n};
             return;
         }
 
-        List<Node> nodes = new ArrayList<>(Arrays.asList(adjacent));
+        final List<Node> nodes = new ArrayList<>(Arrays.asList(adjacent));
         nodes.add(n);
         adjacent = nodes.toArray(adjacent);
     }
