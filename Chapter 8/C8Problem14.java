@@ -39,7 +39,6 @@ public final class C8Problem14 {
         return ways;
     }
 
-
     static int countEval2(String s, boolean result) {
         return countEval2(s, result, new HashMap<>(), new HashMap<>());
     }
