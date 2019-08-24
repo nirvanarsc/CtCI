@@ -4,7 +4,10 @@ import java.util.Comparator;
 public class C10Problem2 {
 
     private static void sortByAnagrams(String[] strings) {
-        Arrays.sort(strings, Comparator.comparing(C10Problem2::sortChars));
+        final Comparator<String> stringComparator1 = (s1, s2) -> sortChars(s1).compareTo(sortChars(s2));
+        final Comparator<String> stringComparator2 = Comparator.comparing(s -> sortChars(s));
+        final Comparator<String> stringComparator3 = Comparator.comparing(C10Problem2::sortChars);
+        Arrays.sort(strings, stringComparator1);
     }
 
     private static String sortChars(String s) {
