@@ -8,7 +8,7 @@ public class C10Problem7 {
     int radix = 8;
     byte[] bitfield = new byte[0xffffffff / radix];
 
-    void findOpenNurnber() throws FileNotFoundException {
+    void findOpenNumber() throws FileNotFoundException {
         final Scanner in = new Scanner(new FileReader("filename.txt"));
         while (in.hasNextInt()) {
             final int n = in.nextInt();
