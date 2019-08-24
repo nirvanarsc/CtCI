@@ -18,17 +18,18 @@ public final class C10Problem1 {
     }
 
     private static void mergeArrays(int[] a, int[] b) {
-        for (int i = 0, j = 0; i < a.length; i++) {
-            if (a[i] > b[j]) insert(a, b[j++], i);
-            if (a[i] == 0) a[i] = b[j++];
+        int aIndex = 0;
+        while (a[aIndex + 1] != 0) {
+            aIndex++;
         }
-    }
-
-    private static void insert(int[] a, int val, int index) {
-        if (val == 0) return;
-
-        final int temp = a[index];
-        a[index] = val;
-        insert(a, temp, index + 1);
+        for (int i = a.length - 1, bIndex = b.length - 1; i >= 0; i--) {
+            if (bIndex < 0 || a[aIndex] > b[bIndex]) {
+                a[i] = a[aIndex];
+                aIndex--;
+            } else {
+                a[i] = b[bIndex];
+                bIndex--;
+            }
+        }
     }
 }
