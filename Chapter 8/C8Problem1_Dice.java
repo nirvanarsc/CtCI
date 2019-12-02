@@ -7,6 +7,22 @@ public final class C8Problem1_Dice {
         System.out.println(diceGameImp(400));
         System.out.println(diceGame(400));
         System.out.println(numberOfCombinations(400));
+        System.out.println(bottomUpDP(610, 6));
+        System.out.println(diceGameImp(610));
+    }
+
+    // For K-sided dice
+    private static BigInteger bottomUpDP(int n, int k) {
+        final BigInteger[] dp = new BigInteger[k];
+        Arrays.fill(dp, BigInteger.ZERO);
+        dp[k - 1] = BigInteger.ONE;
+
+        for (int i = 1; i <= n; i++) {
+            final BigInteger temp = Arrays.stream(dp).reduce(BigInteger.ZERO, BigInteger::add);
+            System.arraycopy(dp, 1, dp, 0, k - 1);
+            dp[k - 1] = temp;
+        }
+        return dp[k - 1];
     }
 
     // My solution optimized for memory
